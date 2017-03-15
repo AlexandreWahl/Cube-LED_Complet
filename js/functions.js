@@ -347,9 +347,14 @@ function cubeEditor(numero) {
             });
 
 
-            $('#' + i + '-' + j).click(function(){
-                var color = $('.inputCubeEditor').find("select[name='selectTypeColor']").find(":selected").val();
-                $(this).css("background-color", color);
+            $('#' + i + '-' + j).mousedown(function(e){
+                if(e.button == 2) {
+                    $(this).css("background-color", "");
+                } else if(e.button == 0) {
+                    var color = $('.inputCubeEditor').find("select[name='selectTypeColor']").find(":selected").val();
+                    $(this).css("background-color", color);
+                }
+                validateArray();
             }).mouseover(function(){
                 if(isDownLeft) {
                     var color = $('.inputCubeEditor').find("select[name='selectTypeColor']").find(":selected").val();
@@ -357,8 +362,8 @@ function cubeEditor(numero) {
                 } else if(isDownRight) {
                     $(this).css("background-color", "");
                 }
+                validateArray();
             }).contextmenu(function(){
-                $(this).css("background-color", "");
                 return false;
             });
         }
@@ -669,7 +674,12 @@ function createSelect(type, pos) {
             select += '<option value="purple">Violet</option>';
             select += '<option value="pink">Rose</option>';
             select += '<option value="brown">Brun</option>';
+            select += '<option value="navy">Bleu foncé</option>';
+            select += '<option value="cyan">Cyan</option>';
+            select += '<option value="gold">Doré</option>';
+            select += '<option value="silver">Argenté</option>';
             select += '<option value="black">Noir</option>';
+            select += '<option value="white">Blanc</option>';
             select += '</select>';
             return select;
         case "sens" :
